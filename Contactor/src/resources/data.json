@@ -1,0 +1,22 @@
+{
+    "contacts":[
+        {
+            "id":1,
+            "name": "Dominos",
+            "phoneNumber": "5812345",
+            "thumbnailPhoto": "data:image/png;base64,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"
+        },
+        {
+            "id":2,
+            "name":"Hreyfill",
+            "phoneNumber": "5885522",
+            "thumbnailPhoto": "https://www.hreyfill.is/wp-content/uploads/2022/03/Hreyfill-logo-5-88.png"
+        },
+        {
+            "id":3,
+            "name":"Kalli",
+            "phoneNumber": "6110475",
+            "thumbnailPhoto": "https://wikibio.in/wp-content/uploads/2021/12/Hasbulla.jpg"
+        }
+    ]
+}

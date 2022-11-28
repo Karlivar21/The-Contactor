@@ -1,13 +1,13 @@
-import React from 'react';
-import {View,FlatList,Text, TouchableOpacity} from 'react-native';
-import PropTypes from 'prop-types';
-import ContactThumbnail from '../contactthumbnail';
+import React from 'react'
+import { View, FlatList, Text, TouchableOpacity } from 'react-native'
+import PropTypes from 'prop-types'
+import ContactThumbnail from '../contactthumbnail'
 
-const ContactsList = ({contacts, navigation: { navigate } }) => (
+const ContactsList = ({ contacts, navigation: { navigate } }) => (
         <FlatList
-            style={{flex: 1, paddingTop: 15}}
+            style={{ flex: 1, paddingTop: 15 }}
             data={contacts}
-            renderItem={({item}) => (
+            renderItem={({ item }) => (
                 <TouchableOpacity onPress={() => navigate('ContactInfo', item)}>
                 <ContactThumbnail
                     name={item.name}
@@ -16,15 +16,15 @@ const ContactsList = ({contacts, navigation: { navigate } }) => (
             )}
             keyExtractor={contact => contact.id}
         />
-);
+)
 
 ContactsList.propTypes = {
-    contacts: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string,
-        phoneNumber: PropTypes.string,
-        imageURI: PropTypes.string
-    })),
-    navigation: PropTypes.object.isRequired,
+  contacts: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    imageURI: PropTypes.string
+  })),
+  navigation: PropTypes.object.isRequired
 }
 
-export default ContactsList;
+export default ContactsList

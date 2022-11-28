@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: lightGray,
-        height: 500,
+        height: 300,
         width: 350,
         borderRadius: 10,
         borderWidth: 2,
@@ -34,70 +34,29 @@ const styles = StyleSheet.create({
    
     icon: {
         fontSize: 20,
-        borderRadius: 10,
-        borderWidth: 2,
-
-        borderColor: 'black',
       },
-
-    user: {
-        color: white,
-        fontSize: 80,
-        position: 'absolute',
-        top: 19,
-        left: 10,
-
-    },
-
-    circle: {
-        paddingBottom: 20,
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-        backgroundColor: gray,
-    },
-
-    input: {
-        padding: 10,
-        borderRadius: 10,
-        backgroundColor: white,
-        marginTop: 10,
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
 
     text: {
         paddingBottom: 15,
         fontSize: 20,
-        color: white,
+        color: black,
         fontWeight: 'bold',
     
     },
 
     button: {
-        justifyContent: 'center',
-        paddingRight: 10,
-        paddingLeft: 10,
-        borderColor: white,
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: 20,
         borderWidth: 2,
-        backgroundColor: gray,
+        borderColor: 'black',
+        borderRadius: 10,
     },
 
     buttonText: {
-        fontSize: 15,
+        fontSize: 20,
         color: blue,
-        paddingTop: 10,
-        paddingBottom: 10,
-
-    },
-
-    image:{
-        width:100,
-        height:100,
-        borderRadius:50,
-        backgroundColor:'lightgrey',
-    },
-
+    }
     
 });
 

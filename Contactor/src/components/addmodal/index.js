@@ -1,12 +1,13 @@
 import React from "react";
-import { View, Text, TouchableHighlight, TouchableOpacity, TextInput, Modal} from "react-native";
+import { View, Text, TouchableHighlight, TouchableOpacity, TextInput, Modal, Image} from "react-native";
 import styles from "./styles";
 import { Formik } from 'formik'
 import NativeModal from 'react-native-modal';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function AddModal ({visible, closeModal, selectFromCameraRoll, addContact}) {
+export default function AddModal ({visible, closeModal, addContact, addPhoto, photo, isSelected}) {
+    console.log(isSelected)
     return (
         <Formik 
             initialValues={{name: '', phoneNumber: '', imageURI: ''}}
@@ -14,23 +15,29 @@ export default function AddModal ({visible, closeModal, selectFromCameraRoll, ad
     {({handleChange, handleBlur, handleSubmit, values}) => (
     <NativeModal visible={visible} animationType="slide" onRequestClose={closeModal}>
         <View style={styles.container}>
-            <View style={styles.icon}>
-        <MaterialIcons style={styles.icon} name = 'close' onPress={closeModal}/>
-        </View>
+            <View style={styles.top}>
+                <TouchableHighlight onPress={closeModal}>
+                    <Text style={styles.buttonText}>Cancel</Text>
+                    </TouchableHighlight>
             <Text style={styles.title}>Add Contact</Text>
-            <View style={styles.circle}>
-                <AntDesign name="user" style={styles.user}/>
+            <TouchableHighlight onPress={handleSubmit}>
+                <Text style={styles.buttonText}>Done</Text>
+            </TouchableHighlight>   
             </View>
+            {
+                isSelected 
+                ? 
+                <Image style = {styles.image} source={{uri:photo}}/>
+                :
+                <View style={styles.circle}>
+                <AntDesign name="user" style={styles.user}/>
+                </View> 
+            }
+            
             <TouchableOpacity
-                >
-                    <Text style={styles.text}>
-                        Take Photo
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                onPress={() => selectFromCameraRoll()} >
-                    <Text style={styles.text}>
-                        Select photo from cameraroll
+                onPress={() => addPhoto()}>
+                    <Text style={styles.buttonText}>
+                        Add Photo
                 </Text>
             </TouchableOpacity>
             <TextInput style={styles.input} 
@@ -43,9 +50,7 @@ export default function AddModal ({visible, closeModal, selectFromCameraRoll, ad
             onChangeText={handleChange('phoneNumber')}
             onBlur={handleBlur('phoneNumber')}
             value={values.phoneNumber}/>
-            <TouchableHighlight style={styles.button} onPress={handleSubmit}>
-                <Text style={styles.buttonText}>SUBMIT</Text>
-            </TouchableHighlight>   
+            
         </View>
     </NativeModal>
     )}

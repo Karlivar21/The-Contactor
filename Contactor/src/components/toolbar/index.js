@@ -4,7 +4,7 @@ import styles from "./styles";
 
 
 
-const Toolbar = ({onAdd}) => ( 
+const Toolbar = ({onAdd}) => (
     <View style={styles.container}>
         <View style={styles.search}>
         <TextInput style={styles.input} placeholder="search"/>

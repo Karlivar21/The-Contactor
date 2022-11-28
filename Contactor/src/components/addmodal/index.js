@@ -6,7 +6,6 @@ import NativeModal from 'react-native-modal'
 import { AntDesign } from '@expo/vector-icons'
 
 export default function AddModal ({visible, closeModal, addContact, addPhoto, photo, isSelected}) {
-    console.log(isSelected)
     return (
         <Formik 
             initialValues={{name: '', phoneNumber: '', imageURI: ''}}

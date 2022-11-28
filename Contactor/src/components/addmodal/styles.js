@@ -21,6 +21,13 @@ const styles = StyleSheet.create({
         color: black,
         fontWeight: 'bold',
     },
+    circle: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        backgroundColor: 'gray',
+        alignItems: 'center',
+    },
 
     top: {
         flexDirection: 'row',

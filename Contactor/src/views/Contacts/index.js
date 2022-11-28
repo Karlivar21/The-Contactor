@@ -6,14 +6,16 @@ import { addContact, getAllContacts } from '../../services/fileservice'
 import data from '../../resources/data'
 import Toolbar from '../../components/toolbar'
 import AddModal from '../../components/addmodal'
+import AddPhoto from '../../components/addphoto'
 import * as imageService from '../../services/imageservice'
 
 export default function Contacts ({ navigation }) {
   const [contacts, setContacts] = useState(data.contacts)
   const [openContact, setOpenContact] = useState(false)
   const [photo, setPhoto] = useState({})
-  console.log(contacts)
+  const [openAddPhoto, setOpenAddPhoto] = useState(false)
   const [selectedContacts, setSelectedContacts] = useState([])
+  const [selectedPhoto, setSelectedPhoto] = useState(false)
   const [input, setInput] = useState('')
 
   //   navigation.addListener('focus', () => {
@@ -38,20 +40,37 @@ export default function Contacts ({ navigation }) {
   //     setContacts(contacts => [...contacts, { id, name, phoneNumber, imageURI }])
   //     }}
 
-  const selectFromCameraRoll = async () => {
-    const photo = await imageService.selectFromCameraRoll()
-    setPhoto(photo[0].uri)
-  }
+    const selectFromCameraRoll = async () => {
+        const photo = await imageService.selectFromCameraRoll()
+        setPhoto(photo[0].uri)
+        setSelectedPhoto(true)
+    }
 
-  const addContact = (Contact) => {
-    const lastId = contacts.length
-    Contact.id = lastId + 1
-    Contact.thumbnailPhoto = photo
-    setContacts((currentContacts) => {
-      return [...contacts, Contact]
-    })
-    setOpenContact(false)
-  }
+    const addContact = (Contact) => {
+        const lastId = contacts.length
+        Contact.id = lastId + 1
+        Contact.thumbnailPhoto = photo
+        setContacts((currentContacts) => {
+        return [...contacts, Contact]
+        })
+        setOpenContact(false)
+        setSelectedPhoto(false)
+    }
+
+    const switchModal = () => {
+        setOpenContact(false)
+        setOpenAddPhoto(true)
+    }
+
+    const switchModalBack = () => {
+        setOpenAddPhoto(false)
+        setOpenContact(true)
+    }
+
+    const closeModal = () => {
+        setOpenContact(false)
+        setSelectedPhoto(false)
+    }
 
   return (
     <View style={styles.container}>
@@ -70,12 +89,18 @@ export default function Contacts ({ navigation }) {
             />
         <AddModal
             visible={openContact}
-            closeModal={() => setOpenContact(false)}
-            selectFromCameraRoll={selectFromCameraRoll}
+            closeModal={closeModal}
             addContact={addContact}
+            addPhoto = {switchModal}
+            isSelected={selectedPhoto}
+            photo = {photo}
             />
 
+        <AddPhoto
+            visible={openAddPhoto}
+            selectFromCameraRoll={selectFromCameraRoll}
+            closeModal={switchModalBack}
+            />
     </View>
-
   )
 }

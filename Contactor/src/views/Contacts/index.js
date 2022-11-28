@@ -14,6 +14,7 @@ export default function Contacts ({ navigation }) {
   const [photo, setPhoto] = useState({})
   console.log(contacts)
   const [selectedContacts, setSelectedContacts] = useState([])
+  const [input, setInput] = useState('')
 
   //   navigation.addListener('focus', () => {
   //     getContacts();
@@ -56,17 +57,17 @@ export default function Contacts ({ navigation }) {
     <View style={styles.container}>
         <Toolbar
         onAdd = {() => setOpenContact(true)}
-        contacts={contacts}
-        navigation={navigation}
+        input = {input}
+        setInput = {setInput}
         />
-        {
-            <ContactList
-                contacts={contacts}
-                navigation={navigation}
-                selectFromCameraRoll={selectFromCameraRoll}
-                addContact={addContact}
-                />
-        }
+        <ContactList
+            contacts={contacts}
+            navigation={navigation}
+            selectFromCameraRoll={selectFromCameraRoll}
+            addContact={addContact}
+            input={input}
+            setInput={setInput}
+            />
         <AddModal
             visible={openContact}
             closeModal={() => setOpenContact(false)}

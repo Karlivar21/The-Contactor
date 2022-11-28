@@ -3,20 +3,39 @@ import { View, FlatList, Text, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import ContactThumbnail from '../contactthumbnail'
 
-const ContactsList = ({ contacts, navigation: { navigate } }) => (
-        <FlatList
-            style={{ flex: 1, paddingTop: 15 }}
-            data={contacts}
-            renderItem={({ item }) => (
-                <TouchableOpacity onPress={() => navigate('ContactInfo', item)}>
-                <ContactThumbnail
-                    name={item.name}
-                    imageURI={item.thumbnailPhoto}/>
-                </TouchableOpacity>
-            )}
-            keyExtractor={contact => contact.id}
-        />
-)
+
+
+export default function ContactsList ({input, contacts, navigation: { navigate }, setInput }) { 
+  return (
+  <FlatList
+      style={{ flex: 1, paddingTop: 15 }}
+      data={contacts}
+      renderItem={({ item }) => { 
+        if (input === '') {
+        return (
+          <TouchableOpacity onPress={() => navigate('ContactInfo', item)}>
+          <ContactThumbnail
+              name={item.name}
+              imageURI={item.thumbnailPhoto}/>
+          </TouchableOpacity>
+        )}
+        if (item.name.toLowerCase().includes(input.toLowerCase())) {
+          return (
+            <TouchableOpacity onPress={() => navigate('ContactInfo', item)}>
+              <ContactThumbnail
+                name={item.name}
+                imageURI={item.thumbnailPhoto}/>
+            </TouchableOpacity> 
+          )
+        }
+      }
+      }
+      keyExtractor={contact => contact.id}
+  />
+  )
+        
+  }
+
 
 ContactsList.propTypes = {
   contacts: PropTypes.arrayOf(PropTypes.shape({
@@ -26,5 +45,3 @@ ContactsList.propTypes = {
   })),
   navigation: PropTypes.object.isRequired
 }
-
-export default ContactsList

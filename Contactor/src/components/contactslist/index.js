@@ -16,7 +16,8 @@ export default function ContactsList ({input, contacts, navigation: { navigate }
           <TouchableOpacity onPress={() => navigate('ContactInfo', item)}>
           <ContactThumbnail
               name={item.name}
-              imageURI={item.thumbnailPhoto}/>
+              imageURI={item.thumbnailPhoto}
+              />
           </TouchableOpacity>
         )}
         if (item.name.toLowerCase().includes(input.toLowerCase())) {
@@ -24,7 +25,9 @@ export default function ContactsList ({input, contacts, navigation: { navigate }
             <TouchableOpacity onPress={() => navigate('ContactInfo', item)}>
               <ContactThumbnail
                 name={item.name}
-                imageURI={item.thumbnailPhoto}/>
+                imageURI={item.thumbnailPhoto}
+                />
+
             </TouchableOpacity> 
           )
         }

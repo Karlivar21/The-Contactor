@@ -10,7 +10,7 @@ const Main = ({ navigation: { navigate } }) => (
             <TouchableHighlight
                 onPress={() => navigate('Contacts')}
                 style={styles.button}>
-                <Text>Contacts</Text>
+                <Text style={styles.Text}>Contacts</Text>
             </TouchableHighlight>
         </View>
 )

@@ -10,7 +10,7 @@ import AddPhoto from '../../components/addphoto'
 import * as imageService from '../../services/imageservice'
 
 export default function Contacts ({ navigation }) {
-  const [contacts, setContacts] = useState(data.contacts)
+  const [getContacts, setGetContacts] = useState([])
   const [openContact, setOpenContact] = useState(false)
   const [photo, setPhoto] = useState({})
   const [openAddPhoto, setOpenAddPhoto] = useState(false)
@@ -18,27 +18,31 @@ export default function Contacts ({ navigation }) {
   const [selectedPhoto, setSelectedPhoto] = useState(false)
   const [input, setInput] = useState('')
 
-  //   navigation.addListener('focus', () => {
-  //     getContacts();
-  // });
+    navigation.addListener('focus', () => {
+      fetchContacts();
+  });
 
-  //     useEffect(() => {
-  //     getContacts();
-  // },[]);
+      useEffect(() => {
+      fetchContacts();
+  },[getContacts]);
 
-  //   const getContacts = async () => {
-  //     const data = await getAllContacts();
-  //     console.log(data)
-  //     contacts = [];
-  //     for (let i = 0; i < data.length; i++) {
-  //         const info = JSON.parse(data[i].file);
-  //         console.log(info)
-  //         const id = info[i].name.split('.')[0];
-  //         const name = info[i].name;
-  //         const phoneNumber = info[i].phoneNumber;
-  //         const imageURI = info[i].imageURI;
-  //     setContacts(contacts => [...contacts, { id, name, phoneNumber, imageURI }])
-  //     }}
+        
+        
+
+    const fetchContacts = async () => {
+      const data = await getAllContacts();
+      console.log(data)
+      const Contacts = [];
+      for (let i = 0; i < data.length; i++) {
+          const info = JSON.parse(data[i].file);
+          console.log(info)
+          const id = info.name.split('.')[0];
+          const name = info.name;
+          const phoneNumber = info.phoneNumber;
+          const imageURI = info.imageURI;
+        Contacts.push({id, name, phoneNumber, imageURI})
+      setGetContacts(Contacts)
+      }}
 
     const selectFromCameraRoll = async () => {
         const photo = await imageService.selectFromCameraRoll()
@@ -47,11 +51,11 @@ export default function Contacts ({ navigation }) {
     }
 
     const addContact = (Contact) => {
-        const lastId = contacts.length
+        const lastId = getContacts.length
         Contact.id = lastId + 1
         Contact.thumbnailPhoto = photo
-        setContacts((currentContacts) => {
-        return [...contacts, Contact]
+        setGetContacts((currentContacts) => {
+        return [...getContacts, Contact]
         })
         setOpenContact(false)
         setSelectedPhoto(false)
@@ -70,6 +74,7 @@ export default function Contacts ({ navigation }) {
     const closeModal = () => {
         setOpenContact(false)
         setSelectedPhoto(false)
+        setPhoto({})
     }
 
   return (
@@ -80,7 +85,7 @@ export default function Contacts ({ navigation }) {
         setInput = {setInput}
         />
         <ContactList
-            contacts={contacts}
+            contacts={getContacts}
             navigation={navigation}
             selectFromCameraRoll={selectFromCameraRoll}
             addContact={addContact}

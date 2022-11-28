@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { graniteGray, white, green } from '../../styles/colors'
+import { graniteGray, white, green, black } from '../../styles/colors'
 
 export default StyleSheet.create({
   container: {
@@ -10,14 +10,14 @@ export default StyleSheet.create({
     justifyContent: 'space-around'
   },
   logo: {
-    width: 250,
-    height: 240
-
+    width: 200,
+    height: 200,
+    borderRadius: 150,
   },
 
   paragraph: {
     textAlign: 'center',
-    color: white,
+    color: black,
     fontSize: 50,
     fontWeight: 'bold'
 
@@ -30,8 +30,14 @@ export default StyleSheet.create({
     paddingLeft: 30,
     paddingRight: 30,
     borderColor: white,
+    borderRadius: 10,
     borderWidth: 2,
-    backgroundColor: graniteGray
+    backgroundColor: white
+  },
 
-  }
+  Text: {
+    color: black,
+    fontSize: 20,
+    fontWeight: 'bold'
+    }
 })

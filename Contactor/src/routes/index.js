@@ -7,7 +7,6 @@ import Main from '../views/Main'
 import Contacts from '../views/Contacts'
 import ContactInfo from '../views/ContactInfo'
 
-
 const Stack = createStackNavigator()
 
 const routes = () => (

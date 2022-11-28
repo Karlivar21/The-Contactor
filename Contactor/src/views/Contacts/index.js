@@ -56,6 +56,8 @@ export default function Contacts ({ navigation }) {
     <View style={styles.container}>
         <Toolbar 
         onAdd = {() => setOpenContact(true)}
+        contacts={contacts}
+        navigation={navigation}
         />
         {
             <ContactList

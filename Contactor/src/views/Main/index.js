@@ -1,8 +1,7 @@
 import React from 'react'
-import { View, Text, TouchableHighlight, Image} from 'react-native'
+import { View, Text, TouchableHighlight, Image } from 'react-native'
 import styles from './styles'
 import logo from '../../resources/logo.png'
-
 
 const Main = ({ navigation: { navigate } }) => (
         <View style={styles.container}>

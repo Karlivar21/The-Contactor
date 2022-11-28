@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { lightGray, gray, white, black, blue} from "../../styles/colors";
+import { StyleSheet } from 'react-native'
+import { lightGray, gray, white, black, blue } from '../../styles/colors'
 
 const styles = StyleSheet.create({
     container: {
@@ -29,8 +29,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         borderBottomColor: 'black',
         width: 350,
-    }
-    ,
+    },
    
     icon: {
         fontSize: 20,
@@ -46,15 +45,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 19,
         left: 10,
-
-    },
-
-    circle: {
-        paddingBottom: 20,
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-        backgroundColor: gray,
     },
 
     input: {
@@ -66,12 +56,19 @@ const styles = StyleSheet.create({
         paddingRight: 20,
     },
 
+
     text: {
         paddingBottom: 15,
         fontSize: 20,
         color: white,
         fontWeight: 'bold',
-    
+    },
+
+    buttonText: {
+        fontSize: 15,
+        color: blue,
+        paddingTop: 10,
+        paddingBottom: 10,
     },
 
     button: {
@@ -81,14 +78,6 @@ const styles = StyleSheet.create({
         borderColor: white,
         borderWidth: 2,
         backgroundColor: gray,
-    },
-
-    buttonText: {
-        fontSize: 15,
-        color: blue,
-        paddingTop: 10,
-        paddingBottom: 10,
-
     },
 
     image:{
@@ -101,4 +90,6 @@ const styles = StyleSheet.create({
     
 });
 
-export default styles;
+  
+
+export default styles

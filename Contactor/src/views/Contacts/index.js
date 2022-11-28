@@ -17,27 +17,27 @@ export default function Contacts ({ navigation }) {
   const [selectedContacts, setSelectedContacts] = useState([])
   const [selectedPhoto, setSelectedPhoto] = useState(false)
 
-//   navigation.addListener('focus', () => {
-//     getContacts();
-// });
+  //   navigation.addListener('focus', () => {
+  //     getContacts();
+  // });
 
-//     useEffect(() => {
-//     getContacts();
-// },[]);
+  //     useEffect(() => {
+  //     getContacts();
+  // },[]);
 
-//   const getContacts = async () => {
-//     const data = await getAllContacts();
-//     console.log(data)
-//     contacts = [];
-//     for (let i = 0; i < data.length; i++) {
-//         const info = JSON.parse(data[i].file);
-//         console.log(info)
-//         const id = info[i].name.split('.')[0];
-//         const name = info[i].name;
-//         const phoneNumber = info[i].phoneNumber;
-//         const imageURI = info[i].imageURI;
-//     setContacts(contacts => [...contacts, { id, name, phoneNumber, imageURI }])
-//     }}
+  //   const getContacts = async () => {
+  //     const data = await getAllContacts();
+  //     console.log(data)
+  //     contacts = [];
+  //     for (let i = 0; i < data.length; i++) {
+  //         const info = JSON.parse(data[i].file);
+  //         console.log(info)
+  //         const id = info[i].name.split('.')[0];
+  //         const name = info[i].name;
+  //         const phoneNumber = info[i].phoneNumber;
+  //         const imageURI = info[i].imageURI;
+  //     setContacts(contacts => [...contacts, { id, name, phoneNumber, imageURI }])
+  //     }}
 
     const selectFromCameraRoll = async () => {
         const photo = await imageService.selectFromCameraRoll()
@@ -73,8 +73,10 @@ export default function Contacts ({ navigation }) {
 
   return (
     <View style={styles.container}>
-        <Toolbar 
+        <Toolbar
         onAdd = {() => setOpenContact(true)}
+        contacts={contacts}
+        navigation={navigation}
         />
         {
             <ContactList

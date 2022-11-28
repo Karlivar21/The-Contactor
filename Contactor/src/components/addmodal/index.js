@@ -1,10 +1,9 @@
 import React from "react";
-import { View, Text, TouchableHighlight, TouchableOpacity, TextInput, Modal, Image} from "react-native";
+import { View, Text, TouchableHighlight, TouchableOpacity, TextInput, Image} from "react-native";
 import styles from "./styles";
 import { Formik } from 'formik'
-import NativeModal from 'react-native-modal';
-import { AntDesign } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
+import NativeModal from 'react-native-modal'
+import { AntDesign } from '@expo/vector-icons'
 
 export default function AddModal ({visible, closeModal, addContact, addPhoto, photo, isSelected}) {
     console.log(isSelected)
@@ -40,12 +39,12 @@ export default function AddModal ({visible, closeModal, addContact, addPhoto, ph
                         Add Photo
                 </Text>
             </TouchableOpacity>
-            <TextInput style={styles.input} 
+            <TextInput style={styles.input}
             placeholder="Name"
             onChangeText={handleChange('name')}
             onBlur={handleBlur('name')}
             value={values.name}/>
-            <TextInput style={styles.input} 
+            <TextInput style={styles.input}
             placeholder="Phone Number"
             onChangeText={handleChange('phoneNumber')}
             onBlur={handleBlur('phoneNumber')}
@@ -55,4 +54,5 @@ export default function AddModal ({visible, closeModal, addContact, addPhoto, ph
     </NativeModal>
     )}
     </Formik>
-    )};
+  )
+};

@@ -17,7 +17,7 @@ console.log(contacts)
           <TouchableOpacity onPress={() => navigate('ContactInfo', item)}>
           <ContactThumbnail
               name={item.name}
-              imageURI={item.thumbnailPhoto}
+              thumbnailPhoto={item.thumbnailPhoto}
               />
           </TouchableOpacity>
           )

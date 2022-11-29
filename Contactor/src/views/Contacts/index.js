@@ -3,45 +3,43 @@ import { View } from 'react-native'
 import styles from './styles'
 import ContactList from '../../components/contactslist'
 import { addContact, getAllContacts } from '../../services/fileservice'
-import data from '../../resources/data'
 import Toolbar from '../../components/toolbar'
 import AddModal from '../../components/addmodal'
 import AddPhoto from '../../components/addphoto'
 import * as imageService from '../../services/imageservice'
-import * as importContacts from 'expo-contacts';
+import latinize from 'latinize'
 
 export default function Contacts ({ navigation }) {
   const [getContacts, setGetContacts] = useState([])
   const [openContact, setOpenContact] = useState(false)
   const [photo, setPhoto] = useState({})
   const [openAddPhoto, setOpenAddPhoto] = useState(false)
-  const [selectedContacts, setSelectedContacts] = useState([])
   const [selectedPhoto, setSelectedPhoto] = useState(false)
   const [input, setInput] = useState('')
 
+  const fakePhoto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
     navigation.addListener('focus', () => {
       fetchContacts();
   });
 
-      useEffect(() => {
-      fetchContacts();
-  },[getContacts]);
+//     useEffect(() => {
+//     fetchContacts();
+// },[getContacts]);
+
 
         
         
 
     const fetchContacts = async () => {
       const data = await getAllContacts();
-      console.log(data)
       const Contacts = [];
       for (let i = 0; i < data.length; i++) {
           const info = JSON.parse(data[i].file);
-          console.log(info)
-          const id = info.name.split('.')[0];
+          const id = data[i].name.split("-")[1];
           const name = info.name;
           const phoneNumber = info.phoneNumber;
-          const imageURI = info.imageURI;
-        Contacts.push({id, name, phoneNumber, imageURI})
+          const thumbnailPhoto = info.thumbnailPhoto;
+        Contacts.push({id, name, phoneNumber, thumbnailPhoto})
       setGetContacts(Contacts)
       }}
 
@@ -57,12 +55,19 @@ export default function Contacts ({ navigation }) {
         setSelectedPhoto(true)
     }
 
-    const addContact = (Contact) => {
-        const lastId = getContacts.length
-        Contact.id = lastId + 1
-        Contact.thumbnailPhoto = photo
+    const handleAddContact = async (Contact) => {
+        const name = Contact.name 
+        const phoneNumber = Contact.phoneNumber
+        if (Object.keys(photo).length === 0) {   
+            Contact.thumbnailPhoto = fakePhoto
+        }else {  
+            Contact.thumbnailPhoto = photo
+        }
+        const thumbnailPhoto = Contact.thumbnailPhoto
+        const data = await addContact({name, phoneNumber, thumbnailPhoto});
+        const id = data.split("-")[1];
         setGetContacts((currentContacts) => {
-        return [...getContacts, Contact]
+        return [...getContacts, {id, name, phoneNumber, thumbnailPhoto}]
         })
         setOpenContact(false)
         setSelectedPhoto(false)
@@ -112,17 +117,17 @@ export default function Contacts ({ navigation }) {
             contacts={getContacts}
             navigation={navigation}
             selectFromCameraRoll={selectFromCameraRoll}
-            addContact={addContact}
             input={input}
             setInput={setInput}
             />
         <AddModal
             visible={openContact}
             closeModal={closeModal}
-            addContact={addContact}
+            handleAddContact={handleAddContact}
             addPhoto = {switchModal}
             isSelected={selectedPhoto}
             photo = {photo}
+            fakePhoto = {fakePhoto}
             />
 
         <AddPhoto

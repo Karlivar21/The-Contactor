@@ -27,7 +27,6 @@ export default function ContactInfo ({ route }) {
         }
         Linking.canOpenURL(phoneNumber)
         .then(supported => {
-            console.log(supported);
             if (!supported) {
             Alert.alert('Phone number is not available');
             } else {

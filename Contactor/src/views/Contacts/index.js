@@ -43,11 +43,11 @@ export default function Contacts ({ navigation }) {
       setGetContacts(Contacts)
       }}
 
-    const selectFromCameraRoll = async () => {
-        const photo = await imageService.selectFromCameraRoll()
-        setPhoto(photo[0].uri)
-        setSelectedPhoto(true)
-    }
+  const selectFromCameraRoll = async () => {
+    const photo = await imageService.selectFromCameraRoll()
+    setPhoto(photo[0].uri)
+    setSelectedPhoto(true)
+  }
 
     const takePhoto = async () => {
         const photo = await imageService.takePhoto()
@@ -73,15 +73,15 @@ export default function Contacts ({ navigation }) {
         setSelectedPhoto(false)
     }
 
-    const switchModal = () => {
-        setOpenContact(false)
-        setOpenAddPhoto(true)
-    }
+  const switchModal = () => {
+    setOpenContact(false)
+    setOpenAddPhoto(true)
+  }
 
-    const switchModalBack = () => {
-        setOpenAddPhoto(false)
-        setOpenContact(true)
-    }
+  const switchModalBack = () => {
+    setOpenAddPhoto(false)
+    setOpenContact(true)
+  }
 
     const closeModal = () => {
         setOpenContact(false)

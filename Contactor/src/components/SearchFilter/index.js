@@ -7,8 +7,8 @@ export default function SearchFilter ({ contacts, input, setInput, navigation: {
         <View style={styles.searchFilter}>
             <FlatList data = {contacts} renderItem = {({ item }) => {
               if (input === '') {
-                  return (null)
-              }  
+                return (null)
+              }
               if (item.name.toLowerCase().includes(input.toLowerCase())) {
                 return (
                         <View>

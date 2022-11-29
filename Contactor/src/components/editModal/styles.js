@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
     borderColor: 'black'
   },
 
-    input: {
-        padding: 10,
-        borderRadius: 10,
-        backgroundColor: white,
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
+  user: {
+    color: white,
+    fontSize: 80,
+    position: 'absolute',
+    top: 19,
+    left: 10
+  },
 
   input: {
     padding: 10,
@@ -70,21 +70,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
 
-    buttonText: {
-        fontSize: 15,
-        color: blue,
-        paddingTop: 10,
-        paddingBottom: 10,
-    },
-    inputContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop : 10,
-        marginBottom: 10,
-        backgroundColor: white,
-        width: 300,
-    },
+  buttonText: {
+    fontSize: 15,
+    color: blue,
+    paddingTop: 10,
+    paddingBottom: 10
+  },
 
   button: {
     justifyContent: 'center',

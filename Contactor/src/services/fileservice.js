@@ -44,6 +44,11 @@ export const addContact = async contact => {
   return id
 }
 
+export const editContact = async (contact, fileName) => {
+  await FileSystem.deleteAsync(fileName);
+  await addContact(contact);
+}
+
 export const setupDirectory = async () => {
   const dir = await FileSystem.getInfoAsync(Directory)
   if (!dir.exists) {

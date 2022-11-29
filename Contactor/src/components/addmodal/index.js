@@ -37,18 +37,24 @@ export default function AddModal ({visible, closeModal, handleAddContact, addPho
                         Add Photo
                 </Text>
             </TouchableOpacity>
+            <View style={styles.inputContainer}>
+                <Text>Name:</Text>
             <TextInput style={styles.input}
             placeholder="Name"
             onChangeText={handleChange('name')}
             onBlur={handleBlur('name')}
             value={values.name}
             />
+            </View>
+            <View style={styles.inputContainer}>
+                <Text>Phonenumber:</Text>
             <TextInput style={styles.input}
             placeholder="Phone Number"
             onChangeText={handleChange('phoneNumber')}
             onBlur={handleBlur('phoneNumber')}
             value={values.phoneNumber}
             />
+            </View>
             
         </View>
     </NativeModal>

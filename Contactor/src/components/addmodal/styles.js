@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         backgroundColor: white,
-        marginTop: 10,
         paddingLeft: 20,
         paddingRight: 20,
     },
@@ -76,6 +75,15 @@ const styles = StyleSheet.create({
         color: blue,
         paddingTop: 10,
         paddingBottom: 10,
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop : 10,
+        marginBottom: 10,
+        backgroundColor: white,
+        width: 300,
     },
 
     button: {

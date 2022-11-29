@@ -4,14 +4,12 @@ import PropTypes from 'prop-types'
 import ContactThumbnail from '../contactthumbnail'
 
 export default function ContactsList ({ input, contacts, navigation: { navigate }, setInput }) {
-console.log(contacts)
 
   return (
   <FlatList
       style={{ flex: 1, paddingTop: 15 }}
       data={contacts}
       renderItem={({ item }) => {
-        console.log(contacts)
         if (input === '') {
           return (
           <TouchableOpacity onPress={() => navigate('ContactInfo', item)}>

@@ -27,15 +27,13 @@ export default function Contacts ({ navigation }) {
 // },[getContacts]);
 
 
-        
-        
-
     const fetchContacts = async () => {
       const data = await getAllContacts();
       const Contacts = [];
       for (let i = 0; i < data.length; i++) {
           const info = JSON.parse(data[i].file);
-          const id = data[i].name.split("-")[1];
+          const newid = data[i].name.split("-")[1];
+          const id = newid.split(".")[0];
           const name = info.name;
           const phoneNumber = info.phoneNumber;
           const thumbnailPhoto = info.thumbnailPhoto;

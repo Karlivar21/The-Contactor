@@ -3,7 +3,8 @@ import { View, Text, TouchableHighlight, Image, Linking, Alert, Platform} from '
 import styles from './styles'
 import EditModal from '../../components/editModal'
 import AddPhoto from '../../components/addphoto'
-import { selectFromCameraRoll, switchModalBack } from '../../services/imageservice'
+import * as imageService from '../../services/imageservice'
+import { editContact } from '../../services/fileservice'
 
 export default function ContactInfo ({ route }) {
   const [name, setName] = useState(route.params.name)
@@ -13,14 +14,10 @@ export default function ContactInfo ({ route }) {
   const [openEdit, setOpenEdit] = useState(false)
   const [openAddPhoto, setOpenAddPhoto] = useState(false)
   const [openContact, setOpenContact] = useState(false)
+  const [selectedPhoto, setSelectedPhoto] = useState(false)
+  const [setPhoto, setSetPhoto] = useState([])
   const id = route.params.id
-
-  const fakePhoto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
-  navigation.addListener('focus', () => {
-    fetchContacts();
-});
-  
-
+ 
     const callNumber = phone => {
         console.log('callNumber ----> ', phone);
         let phoneNumber = phone;
@@ -41,20 +38,21 @@ export default function ContactInfo ({ route }) {
         .catch(err => console.log(err));
         };
 
-  const editContact = async (contact) => {
-    const name = contact.name 
-    const phoneNumber = contact.phoneNumber
-    if (Object.keys(photo).length === 0) {   
-        contact.thumbnailPhoto = fakePhoto
+  const handleEditContact = async (contact) => {
+    if (Object.keys(setPhoto).length === 0) {   
+        contact.thumbnailPhoto = image
     }else {  
-        contact.thumbnailPhoto = photo
+        contact.thumbnailPhoto = setPhoto
         }
-    const thumbnailPhoto = contact.thumbnailPhoto
-    
-    // setPhoneNumber(contact.phoneNumber)
-    // setName(contact.name)
-    // setImage(contact.thumbnailPhoto)
-    // setOpenEdit(false)
+    await editContact({id, name, phoneNumber, image},contact)
+    setOpenEdit(false)
+
+  }
+
+  const selectFromCameraRoll = async () => {
+    const selectedPhoto= await imageService.selectFromCameraRoll()
+    setSetPhoto(selectedPhoto[0].uri)
+    setIsSelected(true)
   }
 
   const switchModal = () => {
@@ -84,9 +82,9 @@ export default function ContactInfo ({ route }) {
             <EditModal
             visible={openEdit}
             closeModal={() => setOpenEdit(false)}
-            editContact={editContact}
+            editContact={handleEditContact}
             name={name}
-            image={image}
+            image={setPhoto}
             phoneNumber={phoneNumber}
             isSelected={isSelected}
             addPhoto = {switchModal}

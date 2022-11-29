@@ -22,6 +22,8 @@ const createFileName = (contact) => {
   // Adding unique ID to filename and taking out icelandic letters
   filename = latinize(filename) + "-" + uuidv4()
 
+  filename = filename.split('-')
+  filename = filename[0] + '-' + filename[1] + '.json'
   // File path + contactname + uuid
   filename = Directory + filename
   return filename;
@@ -40,13 +42,15 @@ export const addContact = async contact => {
 
   // return ID so that it can be used to identify each contact
   const data = fileName.split("/")
-  const id = data[data.length - 1]
+  const newdata = data[data.length - 1]
+  const id = newdata.split(".")[0]
   return id
 }
 
-export const editContact = async (contact, fileName) => {
+export const editContact = async (contact, newcontact) => {
+    let fileName = Directory + latinize(contact.name.replace(/\s/g, '')) + '-' + contact.id + '.json'// replace whitespace
   await FileSystem.deleteAsync(fileName);
-  await addContact(contact);
+  await addContact(newcontact);
 }
 
 export const setupDirectory = async () => {

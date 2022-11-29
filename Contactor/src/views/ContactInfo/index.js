@@ -14,6 +14,11 @@ export default function ContactInfo ({ route }) {
   const [openAddPhoto, setOpenAddPhoto] = useState(false)
   const [openContact, setOpenContact] = useState(false)
   const id = route.params.id
+
+  const fakePhoto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+  navigation.addListener('focus', () => {
+    fetchContacts();
+});
   
 
     const callNumber = phone => {
@@ -36,22 +41,20 @@ export default function ContactInfo ({ route }) {
         .catch(err => console.log(err));
         };
 
-  const editContact = (contact) => {
-    console.log(contact)
-    console.log(contact.phoneNumber)
-    console.log(contact.thumbnailPhoto)
-
-    if (contact.name != '') {
-      route.params.name = contact.name
-    } else if (contact.phoneNumber != '') {
-      route.params.phoneNumber = contact.phoneNumber
-    } else if (contact.thumbnailPhoto != '') {
-      route.thumbnailPhoto = contact.thumbnailPhoto
-    }
-    setPhoneNumber(contact.phoneNumber)
-    setName(contact.name)
-    setImage(contact.thumbnailPhoto)
-    setOpenEdit(false)
+  const editContact = async (contact) => {
+    const name = contact.name 
+    const phoneNumber = contact.phoneNumber
+    if (Object.keys(photo).length === 0) {   
+        contact.thumbnailPhoto = fakePhoto
+    }else {  
+        contact.thumbnailPhoto = photo
+        }
+    const thumbnailPhoto = contact.thumbnailPhoto
+    
+    // setPhoneNumber(contact.phoneNumber)
+    // setName(contact.name)
+    // setImage(contact.thumbnailPhoto)
+    // setOpenEdit(false)
   }
 
   const switchModal = () => {

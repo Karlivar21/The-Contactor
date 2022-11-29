@@ -4,8 +4,13 @@ import styles from './styles'
 import NativeModal from 'react-native-modal'
 import Entype from '@expo/vector-icons/Entypo'
 
+<<<<<<< HEAD
 export default function AddPhoto ({ visible, closeModal, selectFromCameraRoll }) {
   return (
+=======
+export default function AddPhoto ({visible, closeModal, takePhoto, selectFromCameraRoll}) {
+    return (
+>>>>>>> 2f1d5bcce04928befda1bef39e6aa2a7c7fba7fc
     <NativeModal visible={visible} animationType="slide" onRequestClose={closeModal}>
         <View style={styles.container}>
         <View style={styles.top}>
@@ -18,7 +23,7 @@ export default function AddPhoto ({ visible, closeModal, selectFromCameraRoll })
             </TouchableHighlight>
             </View>
         <TouchableOpacity
-                onPress={() => selectFromCameraRoll()} style={styles.button}>
+                onPress={() => takePhoto()} style={styles.button}>
                     <Entype name="camera" style={styles.icon}/>
                     <Text style={styles.text}>
                         Take Photo

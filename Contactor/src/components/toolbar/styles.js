@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { Button, StyleSheet } from 'react-native'
 import { darkerBlue, gray, white } from '../../styles/colors'
 
 const styles = StyleSheet.create({
@@ -28,7 +28,19 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'white',
     paddingRigth: 40
-  }
+  },
+
+  button: { 
+    fontSize: 20,
+    color: 'white',
+    padding: 10
+    },
+
+    buttonText: {
+        fontSize: 20,
+        color: 'white',
+        padding: 10
+    }
 
 })
 

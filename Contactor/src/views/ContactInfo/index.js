@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, TouchableHighlight, Image } from 'react-native'
+import { View, Text, TouchableHighlight, Image, Linking, Alert, Platform} from 'react-native'
 import styles from './styles'
 import EditModal from '../../components/editModal'
 import AddPhoto from '../../components/addphoto'
@@ -14,6 +14,28 @@ export default function ContactInfo ({ route }) {
   const [openAddPhoto, setOpenAddPhoto] = useState(false)
   const [openContact, setOpenContact] = useState(false)
   const id = route.params.id
+  
+
+    const callNumber = phone => {
+        console.log('callNumber ----> ', phone);
+        let phoneNumber = phone;
+        if (Platform.OS !== 'android') {
+            phoneNumber = `telprompt:${phone}`;
+        }
+        else  {
+            phoneNumber = `tel:${phone}`;
+        }
+        Linking.canOpenURL(phoneNumber)
+        .then(supported => {
+            console.log(supported);
+            if (!supported) {
+            Alert.alert('Phone number is not available');
+            } else {
+            return Linking.openURL(phoneNumber);
+            }
+        })
+        .catch(err => console.log(err));
+        };
 
   const editContact = (contact) => {
     console.log(contact)
@@ -54,7 +76,8 @@ export default function ContactInfo ({ route }) {
                 <Text style={styles.phone}>+354 {phoneNumber}</Text>
                 </View>
                 <TouchableHighlight style={styles.button}>
-                    <Text style={styles.buttonText}>Call</Text>
+                    <Text style={styles.buttonText} onPress={()=> callNumber(phoneNumber)}>Call</Text>
+                   
                 </TouchableHighlight>
             <EditModal
             visible={openEdit}

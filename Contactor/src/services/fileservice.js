@@ -4,7 +4,7 @@ import { v4 as uuidv4, v4 } from 'uuid'
 import latinize from 'latinize'
 
 const Directory = `${FileSystem.documentDirectory}contacts/`
-
+console.log(Directory)
 const onException = (cb, errorHandler) => {
   try {
     return cb()
@@ -20,17 +20,17 @@ const createFileName = (contact) => {
   let filename = contact.name.replace(/\s/g, '') // replace whitespace
 
   // Adding unique ID to filename and taking out icelandic letters
-  filename = latinize(filename) + uuidv4()
+  filename = latinize(filename) + "-" + uuidv4()
 
   // File path + contactname + uuid
   filename = Directory + filename
-
-  return filename
+  return filename;
 }
 
 export const addContact = async contact => {
   // call helper function to create filename
   fileName = createFileName(contact)
+  
 
   // Check it directory exist
   await setupDirectory()
@@ -39,8 +39,8 @@ export const addContact = async contact => {
   await FileSystem.writeAsStringAsync(fileName, JSON.stringify(contact))
 
   // return ID so that it can be used to identify each contact
-  const id = fileName.split(Directory)[1]
-
+  const data = fileName.split("/")
+  const id = data[data.length - 1]
   return id
 }
 
@@ -60,7 +60,6 @@ export const loadContact = async fileName => {
 export const getAllContacts = async () => {
   await setupDirectory()
   const result = await onException(() => FileSystem.readDirectoryAsync(Directory))
-  console.log(result)
   return Promise.all(result.map(async fileName => {
     return {
       name: fileName,

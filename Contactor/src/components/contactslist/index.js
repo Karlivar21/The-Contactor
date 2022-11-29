@@ -16,7 +16,7 @@ export default function ContactsList ({input, contacts, navigation: { navigate }
           <TouchableOpacity onPress={() => navigate('ContactInfo', item)}>
           <ContactThumbnail
               name={item.name}
-              imageURI={item.thumbnailPhoto}
+              thumbnailPhoto={item.thumbnailPhoto}
               />
           </TouchableOpacity>
         )}

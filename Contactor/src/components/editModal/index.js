@@ -5,11 +5,11 @@ import { Formik } from 'formik'
 import NativeModal from 'react-native-modal'
 import { AntDesign } from '@expo/vector-icons'
 
-export default function AddModal ({ visible, closeModal, addContact, addPhoto, photo, isSelected }) {
+export default function EditModal ({ visible, closeModal, editContact, addPhoto, name, image, phoneNumber, isSelected }) {
   return (
         <Formik
-            initialValues={{ name: '', phoneNumber: '', imageURI: '' }}
-            onSubmit={values => { addContact(values) }}>
+            initialValues={{ name: '', phoneNumber: '', thumbnailPhoto: '' }}
+            onSubmit={values => { editContact(values) }}>
     {({ handleChange, handleBlur, handleSubmit, values }) => (
     <NativeModal visible={visible} animationType="slide" onRequestClose={closeModal}>
         <View style={styles.container}>
@@ -17,14 +17,14 @@ export default function AddModal ({ visible, closeModal, addContact, addPhoto, p
                 <TouchableHighlight onPress={closeModal}>
                     <Text style={styles.buttonText}>Cancel</Text>
                     </TouchableHighlight>
-            <Text style={styles.title}>Add Contact</Text>
+            <Text style={styles.title}>Edit Contact</Text>
             <TouchableHighlight onPress={handleSubmit}>
                 <Text style={styles.buttonText}>Done</Text>
             </TouchableHighlight>
             </View>
             {
                 isSelected
-                  ? <Image style = {styles.image} source={{ uri: photo }}/>
+                  ? <Image style = {styles.image} source={{ uri: image }}/>
                   : <View style={styles.circle}>
                 <AntDesign name="user" style={styles.user}/>
                 </View>
@@ -33,16 +33,16 @@ export default function AddModal ({ visible, closeModal, addContact, addPhoto, p
             <TouchableOpacity
                 onPress={() => addPhoto()}>
                     <Text style={styles.buttonText}>
-                        Add Photo
+                        Change Photo
                 </Text>
             </TouchableOpacity>
             <TextInput style={styles.input}
-            placeholder="Name"
+            placeholder={name}
             onChangeText={handleChange('name')}
             onBlur={handleBlur('name')}
             value={values.name}/>
             <TextInput style={styles.input}
-            placeholder="Phone Number"
+            placeholder={phoneNumber}
             onChangeText={handleChange('phoneNumber')}
             onBlur={handleBlur('phoneNumber')}
             value={values.phoneNumber}/>

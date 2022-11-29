@@ -40,37 +40,37 @@ export default function Contacts ({ navigation }) {
   //     setContacts(contacts => [...contacts, { id, name, phoneNumber, imageURI }])
   //     }}
 
-    const selectFromCameraRoll = async () => {
-        const photo = await imageService.selectFromCameraRoll()
-        setPhoto(photo[0].uri)
-        setSelectedPhoto(true)
-    }
+  const selectFromCameraRoll = async () => {
+    const photo = await imageService.selectFromCameraRoll()
+    setPhoto(photo[0].uri)
+    setSelectedPhoto(true)
+  }
 
-    const addContact = (Contact) => {
-        const lastId = contacts.length
-        Contact.id = lastId + 1
-        Contact.thumbnailPhoto = photo
-        setContacts((currentContacts) => {
-        return [...contacts, Contact]
-        })
-        setOpenContact(false)
-        setSelectedPhoto(false)
-    }
+  const addContact = (Contact) => {
+    const lastId = contacts.length
+    Contact.id = lastId + 1
+    Contact.thumbnailPhoto = photo
+    setContacts((currentContacts) => {
+      return [...contacts, Contact]
+    })
+    setOpenContact(false)
+    setSelectedPhoto(false)
+  }
 
-    const switchModal = () => {
-        setOpenContact(false)
-        setOpenAddPhoto(true)
-    }
+  const switchModal = () => {
+    setOpenContact(false)
+    setOpenAddPhoto(true)
+  }
 
-    const switchModalBack = () => {
-        setOpenAddPhoto(false)
-        setOpenContact(true)
-    }
+  const switchModalBack = () => {
+    setOpenAddPhoto(false)
+    setOpenContact(true)
+  }
 
-    const closeModal = () => {
-        setOpenContact(false)
-        setSelectedPhoto(false)
-    }
+  const closeModal = () => {
+    setOpenContact(false)
+    setSelectedPhoto(false)
+  }
 
   return (
     <View style={styles.container}>

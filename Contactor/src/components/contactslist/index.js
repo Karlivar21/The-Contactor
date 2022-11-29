@@ -3,29 +3,31 @@ import { View, FlatList, Text, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import ContactThumbnail from '../contactthumbnail'
 
+export default function ContactsList ({ input, contacts, navigation: { navigate }, setInput }) {
+console.log(contacts)
 
-
-export default function ContactsList ({input, contacts, navigation: { navigate }, setInput }) { 
   return (
   <FlatList
       style={{ flex: 1, paddingTop: 15 }}
       data={contacts}
-      renderItem={({ item }) => { 
+      renderItem={({ item }) => {
+        console.log(contacts)
         if (input === '') {
-        return (
+          return (
           <TouchableOpacity onPress={() => navigate('ContactInfo', item)}>
           <ContactThumbnail
               name={item.name}
               imageURI={item.thumbnailPhoto}/>
           </TouchableOpacity>
-        )}
+          )
+        }
         if (item.name.toLowerCase().includes(input.toLowerCase())) {
           return (
             <TouchableOpacity onPress={() => navigate('ContactInfo', item)}>
               <ContactThumbnail
                 name={item.name}
                 imageURI={item.thumbnailPhoto}/>
-            </TouchableOpacity> 
+            </TouchableOpacity>
           )
         }
       }
@@ -33,9 +35,7 @@ export default function ContactsList ({input, contacts, navigation: { navigate }
       keyExtractor={contact => contact.id}
   />
   )
-        
-  }
-
+}
 
 ContactsList.propTypes = {
   contacts: PropTypes.arrayOf(PropTypes.shape({

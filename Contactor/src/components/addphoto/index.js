@@ -1,11 +1,11 @@
-import React from "react";
-import { View, Text, TouchableHighlight, TouchableOpacity, TextInput, Modal} from "react-native";
-import styles from "./styles";
-import NativeModal from 'react-native-modal';
+import React from 'react'
+import { View, Text, TouchableHighlight, TouchableOpacity, TextInput, Modal } from 'react-native'
+import styles from './styles'
+import NativeModal from 'react-native-modal'
 import Entype from '@expo/vector-icons/Entypo'
 
-export default function AddPhoto ({visible, closeModal, selectFromCameraRoll}) {
-    return (
+export default function AddPhoto ({ visible, closeModal, selectFromCameraRoll }) {
+  return (
     <NativeModal visible={visible} animationType="slide" onRequestClose={closeModal}>
         <View style={styles.container}>
         <View style={styles.top}>
@@ -15,7 +15,7 @@ export default function AddPhoto ({visible, closeModal, selectFromCameraRoll}) {
             <Text style={styles.title}>Add Photo</Text>
             <TouchableHighlight onPress={closeModal}>
                 <Text style={styles.buttonText}>Done</Text>
-            </TouchableHighlight>   
+            </TouchableHighlight>
             </View>
         <TouchableOpacity
                 onPress={() => selectFromCameraRoll()} style={styles.button}>
@@ -23,7 +23,7 @@ export default function AddPhoto ({visible, closeModal, selectFromCameraRoll}) {
                     <Text style={styles.text}>
                         Take Photo
                 </Text>
-                
+
             </TouchableOpacity>
         <TouchableOpacity
             onPress={() => selectFromCameraRoll()} style={styles.button}>
@@ -31,9 +31,9 @@ export default function AddPhoto ({visible, closeModal, selectFromCameraRoll}) {
                 <Text style={styles.text}>
                     Select photo from cameraroll
             </Text>
-            
+
         </TouchableOpacity>
         </View>
     </NativeModal>
-    )}
-    
+  )
+}

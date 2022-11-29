@@ -8,6 +8,7 @@ import Toolbar from '../../components/toolbar'
 import AddModal from '../../components/addmodal'
 import AddPhoto from '../../components/addphoto'
 import * as imageService from '../../services/imageservice'
+import * as importContacts from 'expo-contacts';
 
 export default function Contacts ({ navigation }) {
   const [getContacts, setGetContacts] = useState([])
@@ -50,6 +51,12 @@ export default function Contacts ({ navigation }) {
         setSelectedPhoto(true)
     }
 
+    const takePhoto = async () => {
+        const photo = await imageService.takePhoto()
+        setPhoto(photo.uri)
+        setSelectedPhoto(true)
+    }
+
     const addContact = (Contact) => {
         const lastId = getContacts.length
         Contact.id = lastId + 1
@@ -77,12 +84,29 @@ export default function Contacts ({ navigation }) {
         setPhoto({})
     }
 
+    // const importContact = async () => {
+    //     const { status } = await importContacts.requestPermissionsAsync();
+    //     if (status === 'granted') {
+    //     const { data } = await importContacts.getContactsAsync({
+    //         fields: [Contacts.Fields.Emails],
+    //     });
+    
+    //     if (data.length > 0) {
+    //       const contact = data[0];
+    //       console.log(contact);
+          
+    //     }};
+    // }
+      
+    
+
   return (
     <View style={styles.container}>
         <Toolbar
         onAdd = {() => setOpenContact(true)}
         input = {input}
         setInput = {setInput}
+        // importContact = {importContact}
         />
         <ContactList
             contacts={getContacts}
@@ -104,6 +128,7 @@ export default function Contacts ({ navigation }) {
         <AddPhoto
             visible={openAddPhoto}
             selectFromCameraRoll={selectFromCameraRoll}
+            takePhoto={takePhoto}
             closeModal={switchModalBack}
             />
     </View>

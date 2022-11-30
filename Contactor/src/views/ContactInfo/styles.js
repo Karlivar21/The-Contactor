@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { lightGray, cucumber, green, dell, blue, red, rose, black } from '../../styles/colors'
+import { cucumber, green, blue, red, rose } from '../../styles/colors'
 
 export default StyleSheet.create({
   container: {
@@ -34,7 +34,7 @@ export default StyleSheet.create({
     fontSize: 20,
     color: blue,
     padding: 5,
-    marginTop: 20,
+    marginTop: 20
   },
 
   number: {
@@ -59,13 +59,13 @@ export default StyleSheet.create({
   phone: {
     fontSize: 20,
     color: 'black',
-    textAlign: 'center',
+    textAlign: 'center'
   },
 
   phoneIcon: {
     fontSize: 40,
     color: rose,
-    textAlign: 'center',
+    textAlign: 'center'
   },
 
   button: {

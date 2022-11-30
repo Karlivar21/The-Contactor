@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import ContactThumbnail from '../contactthumbnail'
 
 export default function ContactsList ({ input, contacts, navigation: { navigate }, setInput }) {
-
   return (
   <FlatList
       style={{ flex: 1, paddingTop: 15 }}
@@ -28,7 +27,7 @@ export default function ContactsList ({ input, contacts, navigation: { navigate 
                 imageURI={item.thumbnailPhoto}
                 />
 
-            </TouchableOpacity> 
+            </TouchableOpacity>
           )
         }
       }

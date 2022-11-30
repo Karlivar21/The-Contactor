@@ -4,8 +4,8 @@ import styles from './styles'
 import NativeModal from 'react-native-modal'
 import Entype from '@expo/vector-icons/Entypo'
 
-export default function AddPhoto ({visible, closeModal, takePhoto, selectFromCameraRoll}) {
-    return (
+export default function AddPhoto ({ visible, closeModal, takePhoto, selectFromCameraRoll }) {
+  return (
     <NativeModal visible={visible} animationType="slide" onRequestClose={closeModal}>
         <View style={styles.container}>
         <View style={styles.top}>

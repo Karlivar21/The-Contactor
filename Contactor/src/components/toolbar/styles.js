@@ -23,27 +23,27 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     marginLeft: 40,
-    fontSize: '20px',
+    fontSize: '20px'
   },
 
   plus: {
     marginLeft: 30,
     paddingBottom: 65,
     fontSize: 50,
-    color: 'white',
+    color: 'white'
   },
 
-  button: { 
+  button: {
     fontSize: 20,
     color: 'white',
     padding: 10
-    },
+  },
 
-    buttonText: {
-        fontSize: 20,
-        color: 'white',
-        padding: 10
-    }
+  buttonText: {
+    fontSize: 20,
+    color: 'white',
+    padding: 10
+  }
 
 })
 

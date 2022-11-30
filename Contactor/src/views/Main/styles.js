@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { rose, white, green, black, dell, cucumber } from '../../styles/colors'
+import { rose, white, cucumber } from '../../styles/colors'
 
 export default StyleSheet.create({
   container: {
@@ -12,7 +12,7 @@ export default StyleSheet.create({
   logo: {
     width: 200,
     height: 200,
-    borderRadius: 150,
+    borderRadius: 150
   },
 
   paragraph: {
@@ -39,5 +39,5 @@ export default StyleSheet.create({
     color: cucumber,
     fontSize: 20,
     fontWeight: 'bold'
-    }
+  }
 })

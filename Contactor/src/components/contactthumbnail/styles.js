@@ -37,15 +37,15 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 50,
     backgroundColor: 'gray',
-    alignItems: 'center',
-},
-user: {
+    alignItems: 'center'
+  },
+  user: {
     color: white,
     fontSize: 40,
     position: 'absolute',
     top: 10,
-    left: 6,
-},
+    left: 6
+  }
 })
 
 export default styles

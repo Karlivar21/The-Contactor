@@ -5,13 +5,13 @@ import { Formik } from 'formik'
 import NativeModal from 'react-native-modal'
 import { AntDesign } from '@expo/vector-icons'
 
-export default function AddModal ({visible, closeModal, handleAddContact, addPhoto, photo, isSelected, fakePhoto}) {
-    return (
-        <Formik 
-            initialValues={{name: '', phoneNumber: '', imageURI: ''}}
-            onSubmit={values => {handleAddContact(values)}}
+export default function AddModal ({ visible, closeModal, handleAddContact, addPhoto, photo, isSelected, fakePhoto }) {
+  return (
+        <Formik
+            initialValues={{ name: '', phoneNumber: '', imageURI: '' }}
+            onSubmit={values => { handleAddContact(values) }}
             >
-    {({handleChange, handleBlur, handleSubmit, values}) => (
+    {({ handleChange, handleBlur, handleSubmit, values }) => (
     <NativeModal visible={visible} animationType="slide" onRequestClose={closeModal}>
         <View style={styles.container}>
             <View style={styles.top}>
@@ -24,11 +24,9 @@ export default function AddModal ({visible, closeModal, handleAddContact, addPho
             </TouchableHighlight>
             </View>
             {
-                isSelected 
-                ? 
-                <Image style = {styles.image} source={{uri:photo}}/>
-                :
-                <Image style = {styles.image} source={{uri:fakePhoto}}/>
+                isSelected
+                  ? <Image style = {styles.image} source={{ uri: photo }}/>
+                  : <Image style = {styles.image} source={{ uri: fakePhoto }}/>
             }
 
             <TouchableOpacity
@@ -55,7 +53,7 @@ export default function AddModal ({visible, closeModal, handleAddContact, addPho
             value={values.phoneNumber}
             />
             </View>
-            
+
         </View>
     </NativeModal>
     )}

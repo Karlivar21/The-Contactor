@@ -18,29 +18,29 @@ const onException = (cb, errorHandler) => {
 
 const createFileName = (contact) => {
   let filename = contact.name.replace(/\s/g, '') // replace whitespace
-  filename = latinize(filename) + "-" + uuidv4()
+  filename = latinize(filename) + '-' + uuidv4()
   filename = filename.split('-')
   filename = filename[0] + '-' + filename[1] + '.json'
   filename = Directory + filename
-  return filename;
+  return filename
 }
 
 export const addContact = async contact => {
   fileName = createFileName(contact)
   await setupDirectory()
   await FileSystem.writeAsStringAsync(fileName, JSON.stringify(contact))
-  const data = fileName.split("/")
+  const data = fileName.split('/')
   const newdata = data[data.length - 1]
-  const id = newdata.split(".")[0]
+  const id = newdata.split('.')[0]
   return id
 }
 
 export const editContact = async (contact, newcontact) => {
-    let fileName = Directory + latinize(contact.name.replace(/\s/g, '')) + '-' + contact.id + '.json'// replace whitespace
-  await FileSystem.deleteAsync(fileName);
-  let id = await addContact(newcontact);
-  id = id.split("-")[1]
-  return id;
+  const fileName = Directory + latinize(contact.name.replace(/\s/g, '')) + '-' + contact.id + '.json'// replace whitespace
+  await FileSystem.deleteAsync(fileName)
+  let id = await addContact(newcontact)
+  id = id.split('-')[1]
+  return id
 }
 
 export const setupDirectory = async () => {
@@ -57,9 +57,9 @@ export const loadContact = async fileName => {
 }
 
 export const deleteContact = async (contact) => {
-    console.log(contact)
-    let fileName = Directory + latinize(contact.name.replace(/\s/g, '')) + '-' + contact.id + '.json'
-    await FileSystem.deleteAsync(fileName);
+  console.log(contact)
+  const fileName = Directory + latinize(contact.name.replace(/\s/g, '')) + '-' + contact.id + '.json'
+  await FileSystem.deleteAsync(fileName)
 }
 
 export const getAllContacts = async () => {

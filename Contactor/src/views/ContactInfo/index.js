@@ -4,7 +4,7 @@ import styles from './styles'
 import EditModal from '../../components/editModal'
 import AddPhoto from '../../components/addphoto'
 import * as imageService from '../../services/imageservice'
-import { editContact } from '../../services/fileservice'
+import { editContact, deleteContact} from '../../services/fileservice'
 
 export default function ContactInfo ({ route }) {
   const [name, setName] = useState(route.params.name)
@@ -75,6 +75,33 @@ export default function ContactInfo ({ route }) {
     setOpenAddPhoto(false)
     setOpenEdit(true)
   }
+
+  const askDeleteContact = () => {
+    Alert.alert(
+      'Delete Contact',
+      'Are you sure you want to delete this contact?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => handleDelete()},
+      ],
+      {cancelable: false},
+    );
+  }
+
+  const handleDelete = async () => {
+    deleteContact({id, name, phoneNumber, image})
+    setName('')
+    setImage('')
+    setPhoneNumber('')
+    setId('')
+    setOpenContact(false)
+  }
+
+
   return (
         <View style={styles.container}> 
             <View style={styles.contact}>
@@ -88,7 +115,9 @@ export default function ContactInfo ({ route }) {
                 </View>
                 <TouchableHighlight style={styles.button}>
                     <Text style={styles.buttonText} onPress={()=> callNumber(phoneNumber)}>Call</Text>
-                   
+                </TouchableHighlight>
+                <TouchableHighlight style={styles.button2}>
+                    <Text style={styles.buttonText} onPress={()=> askDeleteContact()}>Delete</Text>
                 </TouchableHighlight>
             <EditModal
             visible={openEdit}

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { lightGray, black, green, white, blue } from '../../styles/colors'
+import { lightGray, black, green, white, blue, red} from '../../styles/colors'
 
 export default StyleSheet.create({
   container: {
@@ -57,6 +57,15 @@ export default StyleSheet.create({
     paddingRight: 10,
     paddingLeft: 10,
     backgroundColor: green,
+    borderRadius: 8
+  },
+
+  button2: {
+    marginHorizontal: 30,
+    justifyContent: 'center',
+    paddingRight: 10,
+    paddingLeft: 10,
+    backgroundColor: red,
     borderRadius: 8
   },
 

@@ -18,29 +18,17 @@ const onException = (cb, errorHandler) => {
 
 const createFileName = (contact) => {
   let filename = contact.name.replace(/\s/g, '') // replace whitespace
-
-  // Adding unique ID to filename and taking out icelandic letters
   filename = latinize(filename) + "-" + uuidv4()
-
   filename = filename.split('-')
   filename = filename[0] + '-' + filename[1] + '.json'
-  // File path + contactname + uuid
   filename = Directory + filename
   return filename;
 }
 
 export const addContact = async contact => {
-  // call helper function to create filename
   fileName = createFileName(contact)
-  
-
-  // Check it directory exist
   await setupDirectory()
-
-  // create file
   await FileSystem.writeAsStringAsync(fileName, JSON.stringify(contact))
-
-  // return ID so that it can be used to identify each contact
   const data = fileName.split("/")
   const newdata = data[data.length - 1]
   const id = newdata.split(".")[0]
@@ -66,6 +54,12 @@ export const loadContact = async fileName => {
   return await onException(() => FileSystem.readAsStringAsync(`${Directory}/${fileName}`, {
     encoding: FileSystem.EncodingType.UTF8
   }))
+}
+
+export const deleteContact = async (contact) => {
+    console.log(contact)
+    let fileName = Directory + latinize(contact.name.replace(/\s/g, '')) + '-' + contact.id + '.json'
+    await FileSystem.deleteAsync(fileName);
 }
 
 export const getAllContacts = async () => {

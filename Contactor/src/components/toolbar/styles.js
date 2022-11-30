@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
-    width: '80%',
+    width: '60%',
     backgroundColor: white,
     borderRadius: 8
 
@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
   button: {
     fontSize: 20,
     color: 'white',
-    padding: 10
-  },
+    paddingLeft: 10,
+    },
 
-  buttonText: {
-    fontSize: 20,
-    color: 'white',
-    padding: 10
-  }
+    buttonText: {
+        fontSize: 20,
+        color: 'white',
+        paddingLeft: 10,
+    }
 
 })
 

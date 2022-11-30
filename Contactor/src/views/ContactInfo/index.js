@@ -63,6 +63,11 @@ export default function ContactInfo ({ route }) {
     setSetPhoto(selectedPhoto[0].uri)
     setIsSelected(true)
   }
+  const takePhoto = async () => {
+    const selectedPhoto = await imageService.takePhoto()
+    setSetPhoto(selectedPhoto[0].uri)
+    setSelectedPhoto(true)
+  }
 
   const switchModal = () => {
     setOpenEdit(false)
@@ -131,6 +136,7 @@ export default function ContactInfo ({ route }) {
             visible={openAddPhoto}
             selectFromCameraRoll={selectFromCameraRoll}
             closeModal={switchModalBack}
+            takePhoto={takePhoto}
             />
             </View>
         </View>

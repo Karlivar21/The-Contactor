@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View } from 'react-native'
+import { View, Alert} from 'react-native'
 import styles from './styles'
 import ContactList from '../../components/contactslist'
 import { addContact, getAllContacts, deleteContact } from '../../services/fileservice'
@@ -44,15 +44,15 @@ export default function ListContacts ({ navigation }) {
       setGetContacts(Contacts)
       }}
 
-  const selectFromCameraRoll = async () => {
-    const photo = await imageService.selectFromCameraRoll()
-    setPhoto(photo[0].uri)
-    setSelectedPhoto(true)
-  }
+    const selectFromCameraRoll = async () => {
+        const photo = await imageService.selectFromCameraRoll()
+        setPhoto(photo[0].uri)
+        setSelectedPhoto(true)
+    }
 
     const takePhoto = async () => {
         const photo = await imageService.takePhoto()
-        setPhoto(photo.uri)
+        setPhoto(photo[0].uri)
         setSelectedPhoto(true)
     }
 
@@ -94,8 +94,24 @@ export default function ListContacts ({ navigation }) {
         setPhoto({})
     }
 
+    const askImportContacts = () => {
+        Alert.alert(
+          'Import Contact',
+          'Are you sure you want to Import your contacts?',
+          [
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel',
+            },
+            {text: 'OK', onPress: () => importContact()},
+          ],
+          {cancelable: false},
+        );
+      }
+
     const importContact = async () => {
-        console.log("importing contacts")
+        
         const { data } = await expoContacts.getContactsAsync({
             fields: [expoContacts.Fields.PhoneNumbers],
         })
@@ -115,7 +131,7 @@ export default function ListContacts ({ navigation }) {
         onAdd = {() => setOpenContact(true)}
         input = {input}
         setInput = {setInput}
-        importContact = {importContact}
+        importContact = {() => askImportContacts()}
         />
         <ContactList
             contacts={getContacts}

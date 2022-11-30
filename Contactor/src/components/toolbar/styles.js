@@ -7,13 +7,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     height: 80,
+    width: '100%',
     backgroundColor: gray
   },
   search: {
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
-    width: 150,
+    width: '80%',
     backgroundColor: white,
     borderRadius: 8
 
@@ -24,10 +25,10 @@ const styles = StyleSheet.create({
   },
 
   plus: {
-    paddingLeft: 150,
-    fontSize: 30,
+    marginLeft: 30,
+    paddingBottom: 65,
+    fontSize: 50,
     color: 'white',
-    paddingRigth: 40
   },
 
   button: { 

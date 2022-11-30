@@ -22,22 +22,22 @@ export default function Contacts ({ navigation }) {
       fetchContacts();
   });
 
-//     useEffect(() => {
-//     fetchContacts();
-// },[getContacts]);
-
-
     const fetchContacts = async () => {
       const data = await getAllContacts();
       const Contacts = [];
       for (let i = 0; i < data.length; i++) {
-          const info = JSON.parse(data[i].file);
-          const newid = data[i].name.split("-")[1];
-          const id = newid.split(".")[0];
-          const name = info.name;
-          const phoneNumber = info.phoneNumber;
-          const thumbnailPhoto = info.thumbnailPhoto;
+        const info = JSON.parse(data[i].file);
+        const newid = data[i].name.split("-")[1];
+        const id = newid.split(".")[0];
+        const name = info.name;
+        const phoneNumber = info.phoneNumber;
+        const thumbnailPhoto = info.thumbnailPhoto;
         Contacts.push({id, name, phoneNumber, thumbnailPhoto})
+       Contacts.sort(function(a, b) {
+      if(a.name < b.name) { return -1; }
+      if(a.name > b.name) { return 1; }
+      return 0;
+    })
       setGetContacts(Contacts)
       }}
 
@@ -65,10 +65,12 @@ export default function Contacts ({ navigation }) {
         const data = await addContact({name, phoneNumber, thumbnailPhoto});
         const id = data.split("-")[1];
         setGetContacts((currentContacts) => {
-        return [...getContacts, {id, name, phoneNumber, thumbnailPhoto}]
+        return [...currentContacts, {id, name, phoneNumber, thumbnailPhoto}]
         })
+        
         setOpenContact(false)
         setSelectedPhoto(false)
+        await fetchContacts()
     }
 
   const switchModal = () => {

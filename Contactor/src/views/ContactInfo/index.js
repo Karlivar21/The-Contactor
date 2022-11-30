@@ -44,9 +44,14 @@ export default function ContactInfo ({ route }) {
     }else {  
         contact.thumbnailPhoto = setPhoto
         }
-    await editContact({id, name, phoneNumber, image},contact)
+    if (contact.name == '') {
+      contact.name = name;
+    }
+    else if (contact.phoneNumber == '') {
+      contact.phoneNumber = phoneNumber;
+    }
+    await editContact({id, name, phoneNumber, image}, contact)
     setOpenEdit(false)
-
   }
 
   const selectFromCameraRoll = async () => {

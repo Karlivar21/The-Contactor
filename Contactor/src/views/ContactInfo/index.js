@@ -39,15 +39,17 @@ export default function ContactInfo ({ route }) {
   }
 
   const handleEditContact = async (contact) => {
-    if (Object.keys(setPhoto).length === 0) {
+    if (Object.keys(setPhoto).length == 0) {
       contact.thumbnailPhoto = image
     } else {
       contact.thumbnailPhoto = setPhoto
     }
-    if (contact.name == '') {
+    if (contact.name === '') {
       contact.name = name
-    } else if (contact.phoneNumber == '') {
+    }
+    if (contact.phoneNumber == '') {
       contact.phoneNumber = phoneNumber
+      console.log(contact.phoneNumber)
     }
     console.log(id)
     const contactId = await editContact({ id, name, phoneNumber, image }, contact)

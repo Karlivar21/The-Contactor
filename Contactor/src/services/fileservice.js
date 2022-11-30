@@ -50,7 +50,9 @@ export const addContact = async contact => {
 export const editContact = async (contact, newcontact) => {
     let fileName = Directory + latinize(contact.name.replace(/\s/g, '')) + '-' + contact.id + '.json'// replace whitespace
   await FileSystem.deleteAsync(fileName);
-  await addContact(newcontact);
+  let id = await addContact(newcontact);
+  id = id.split("-")[1]
+  return id;
 }
 
 export const setupDirectory = async () => {

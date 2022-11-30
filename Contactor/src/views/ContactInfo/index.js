@@ -16,7 +16,7 @@ export default function ContactInfo ({ route }) {
   const [openContact, setOpenContact] = useState(false)
   const [selectedPhoto, setSelectedPhoto] = useState(false)
   const [setPhoto, setSetPhoto] = useState([])
-  const id = route.params.id
+  const [id, setId] = useState(route.params.id)
  
     const callNumber = phone => {
         console.log('callNumber ----> ', phone);
@@ -50,8 +50,14 @@ export default function ContactInfo ({ route }) {
     else if (contact.phoneNumber == '') {
       contact.phoneNumber = phoneNumber;
     }
-    await editContact({id, name, phoneNumber, image}, contact)
+    console.log(id)
+    let contactId = await editContact({id, name, phoneNumber, image}, contact)
+    setName(contact.name)
+    setImage(contact.thumbnailPhoto)
+    setPhoneNumber(contact.phoneNumber)
+    setId(contactId);
     setOpenEdit(false)
+    
   }
 
   const selectFromCameraRoll = async () => {

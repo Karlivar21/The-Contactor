@@ -34,30 +34,49 @@ export default StyleSheet.create({
     fontSize: 20,
     color: blue,
     padding: 5,
-
+    marginTop: 20,
   },
 
   number: {
-    borderRadius: 10,
+    borderRadius: 13,
     backgroundColor: rose,
     padding: 10,
     marginTop: 20,
     width: '90%',
+    height: 50,
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+
+    elevation: 3
   },
 
   phone: {
-    fontSize: 15,
+    fontSize: 20,
     color: 'black',
-    textAlign: 'center'
+    textAlign: 'center',
+  },
+
+  phoneIcon: {
+    fontSize: 40,
+    color: rose,
+    textAlign: 'center',
   },
 
   button: {
-    marginHorizontal: 30,
+    marginTop: 20,
     justifyContent: 'center',
+    width: '90%',
+    height: 50,
     paddingRight: 10,
     paddingLeft: 10,
     backgroundColor: green,
-    borderRadius: 8
+    borderRadius: 13
   },
 
   button2: {

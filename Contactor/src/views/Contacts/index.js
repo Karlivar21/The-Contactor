@@ -25,30 +25,24 @@ export default function ListContacts ({ navigation }) {
       fetchContacts();
   });
 
-//     useEffect(() => {
-//     fetchContacts();
-// },[getContacts]);
-
-    const removecont = async (contact) => {
-        await deleteContact(contact)
-    }
     const fetchContacts = async () => {
       const data = await getAllContacts();
       const Contacts = [];
-      if (data.length > 0) {
-        for (let i = 0; i < data.length; i++) {
-            const info = JSON.parse(data[i].file);
-            const newid = data[i].name.split("-")[1];
-            const id = newid.split(".")[0];
-            const name = info.name;
-            const phoneNumber = info.phoneNumber;
-            const thumbnailPhoto = info.thumbnailPhoto;
-          removecont({id, name, phoneNumber, thumbnailPhoto})
+      for (let i = 0; i < data.length; i++) {
+        const info = JSON.parse(data[i].file);
+        const newid = data[i].name.split("-")[1];
+        const id = newid.split(".")[0];
+        const name = info.name;
+        const phoneNumber = info.phoneNumber;
+        const thumbnailPhoto = info.thumbnailPhoto;
         Contacts.push({id, name, phoneNumber, thumbnailPhoto})
-        setGetContacts(Contacts)
-        }
-    }
-    }
+       Contacts.sort(function(a, b) {
+      if(a.name < b.name) { return -1; }
+      if(a.name > b.name) { return 1; }
+      return 0;
+    })
+      setGetContacts(Contacts)
+      }}
 
   const selectFromCameraRoll = async () => {
     const photo = await imageService.selectFromCameraRoll()
@@ -74,10 +68,12 @@ export default function ListContacts ({ navigation }) {
         const data = await addContact({name, phoneNumber, thumbnailPhoto});
         const id = data.split("-")[1];
         setGetContacts((currentContacts) => {
-        return [...getContacts, {id, name, phoneNumber, thumbnailPhoto}]
+        return [...currentContacts, {id, name, phoneNumber, thumbnailPhoto}]
         })
+        
         setOpenContact(false)
         setSelectedPhoto(false)
+        await fetchContacts()
     }
 
     

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, TouchableHighlight, Image, Linking, Alert, Platform} from 'react-native'
+import { FontAwesome } from '@expo/vector-icons'
 import styles from './styles'
 import EditModal from '../../components/editModal'
 import AddPhoto from '../../components/addphoto'
@@ -107,18 +108,19 @@ export default function ContactInfo ({ route }) {
             <View style={styles.contact}>
                 <Image style={styles.image} source={{ uri: image }}/>
                 <Text style={styles.name}>{name}</Text>
-                <TouchableHighlight onPress={() => setOpenEdit(true)}>
-                    <Text style={styles.edit}>Edit</Text>
-                </TouchableHighlight>
             <View style={styles.number}>
                 <Text style={styles.phone}>+354 {phoneNumber}</Text>
                 </View>
                 <TouchableHighlight style={styles.button}>
-                    <Text style={styles.buttonText} onPress={()=> callNumber(phoneNumber)}>Call</Text>
+                    <FontAwesome name="phone" style={styles.phoneIcon} onPress={()=> callNumber(phoneNumber)}/>
+                </TouchableHighlight>
+                <TouchableHighlight onPress={() => setOpenEdit(true)}>
+                    <Text style={styles.edit}>Edit</Text>
                 </TouchableHighlight>
                 <TouchableHighlight style={styles.button2}>
                     <Text style={styles.buttonText} onPress={()=> askDeleteContact()}>Delete</Text>
                 </TouchableHighlight>
+                
             <EditModal
             visible={openEdit}
             closeModal={() => setOpenEdit(false)}
@@ -136,6 +138,7 @@ export default function ContactInfo ({ route }) {
             />
             </View>
         </View>
+        
 
   )
 }

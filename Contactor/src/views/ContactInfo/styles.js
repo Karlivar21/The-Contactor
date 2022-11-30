@@ -1,15 +1,15 @@
 import { StyleSheet } from 'react-native'
-import { lightGray, black, green, white, blue, red} from '../../styles/colors'
+import { lightGray, cucumber, green, dell, blue, red, rose, black } from '../../styles/colors'
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: lightGray
+    backgroundColor: cucumber
   },
   contact: {
     paddingTop: 20,
     flexDirection: 'column',
-    backgroundColor: lightGray,
+    backgroundColor: cucumber,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -23,8 +23,8 @@ export default StyleSheet.create({
   },
 
   name: {
-    fontSize: 30,
-    paddingTop: 30,
+    fontSize: 40,
+    paddingTop: 20,
     fontWeight: 'bold',
     color: 'black',
     textAlign: 'center'
@@ -33,34 +33,54 @@ export default StyleSheet.create({
   edit: {
     fontSize: 20,
     color: blue,
-    padding: 20
+    padding: 5,
+    marginTop: 20,
   },
 
   number: {
-    marginHorizontal: 30,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: 'black',
-    backgroundColor: lightGray,
-    padding: 10
+    borderRadius: 13,
+    backgroundColor: rose,
+    padding: 10,
+    marginTop: 20,
+    width: '90%',
+    height: 50,
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+
+    elevation: 3
   },
 
   phone: {
-    fontSize: 15,
+    fontSize: 20,
     color: 'black',
-    textAlign: 'center'
+    textAlign: 'center',
+  },
+
+  phoneIcon: {
+    fontSize: 40,
+    color: rose,
+    textAlign: 'center',
   },
 
   button: {
-    marginHorizontal: 30,
+    marginTop: 20,
     justifyContent: 'center',
+    width: '90%',
+    height: 50,
     paddingRight: 10,
     paddingLeft: 10,
     backgroundColor: green,
-    borderRadius: 8
+    borderRadius: 13
   },
 
   button2: {
+    marginTop: 80,
     marginHorizontal: 30,
     justifyContent: 'center',
     paddingRight: 10,

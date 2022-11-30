@@ -1,5 +1,5 @@
 import { Button, StyleSheet } from 'react-native'
-import { darkerBlue, gray, white } from '../../styles/colors'
+import { dell, gray, white } from '../../styles/colors'
 
 const styles = StyleSheet.create({
   container: {
@@ -7,27 +7,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     height: 80,
-    backgroundColor: gray
+    width: '100%',
+    backgroundColor: dell
   },
   search: {
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
-    width: 150,
+    width: '80%',
     backgroundColor: white,
     borderRadius: 8
 
   },
 
   input: {
-    paddingRigth: 40
+    width: '100%',
+    marginLeft: 40,
+    fontSize: '20px',
   },
 
   plus: {
-    paddingLeft: 90,
-    fontSize: 30,
+    marginLeft: 30,
+    paddingBottom: 65,
+    fontSize: 50,
     color: 'white',
-    paddingRigth: 40
   },
 
   button: { 

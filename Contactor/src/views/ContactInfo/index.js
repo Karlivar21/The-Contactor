@@ -107,14 +107,14 @@ export default function ContactInfo ({ route }) {
             <View style={styles.contact}>
                 <Image style={styles.image} source={{ uri: image }}/>
                 <Text style={styles.name}>{name}</Text>
-                <TouchableHighlight onPress={() => setOpenEdit(true)}>
-                    <Text style={styles.edit}>Edit</Text>
-                </TouchableHighlight>
             <View style={styles.number}>
                 <Text style={styles.phone}>+354 {phoneNumber}</Text>
                 </View>
                 <TouchableHighlight style={styles.button}>
                     <Text style={styles.buttonText} onPress={()=> callNumber(phoneNumber)}>Call</Text>
+                </TouchableHighlight>
+                <TouchableHighlight onPress={() => setOpenEdit(true)}>
+                    <Text style={styles.edit}>Edit</Text>
                 </TouchableHighlight>
                 <TouchableHighlight style={styles.button2}>
                     <Text style={styles.buttonText} onPress={()=> askDeleteContact()}>Delete</Text>

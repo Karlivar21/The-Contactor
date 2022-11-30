@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native'
-import {white} from '../../styles/colors'
+import { white, rose } from '../../styles/colors'
 const styles = StyleSheet.create({
   contact: {
     paddingTop: 20,
-    backgroundColor: 'white',
+    backgroundColor: white,
     marginHorizontal: 15,
     marginBottom: 15,
     flex: 1,

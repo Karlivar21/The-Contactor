@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native'
-import { graniteGray, white, green, black } from '../../styles/colors'
+import { rose, white, green, black, dell, cucumber } from '../../styles/colors'
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     padding: 5,
-    backgroundColor: green,
+    backgroundColor: rose,
     alignItems: 'center',
     justifyContent: 'space-around'
   },
@@ -17,7 +17,7 @@ export default StyleSheet.create({
 
   paragraph: {
     textAlign: 'center',
-    color: black,
+    color: cucumber,
     fontSize: 50,
     fontWeight: 'bold'
 
@@ -36,7 +36,7 @@ export default StyleSheet.create({
   },
 
   Text: {
-    color: black,
+    color: cucumber,
     fontSize: 20,
     fontWeight: 'bold'
     }

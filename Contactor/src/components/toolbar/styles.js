@@ -1,5 +1,5 @@
 import { Button, StyleSheet } from 'react-native'
-import { darkerBlue, gray, white } from '../../styles/colors'
+import { dell, gray, white } from '../../styles/colors'
 
 const styles = StyleSheet.create({
   container: {
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 80,
     width: '100%',
-    backgroundColor: gray
+    backgroundColor: dell
   },
   search: {
     alignItems: 'center',
@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    paddingRigth: 40
+    width: '100%',
+    marginLeft: 40,
+    fontSize: '20px',
   },
 
   plus: {

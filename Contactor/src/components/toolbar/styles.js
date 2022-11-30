@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
   button: {
     fontSize: 20,
     color: 'white',
-    paddingLeft: 10,
-    },
+    paddingLeft: 10
+  },
 
-    buttonText: {
-        fontSize: 20,
-        color: 'white',
-        paddingLeft: 10,
-    }
+  buttonText: {
+    fontSize: 20,
+    color: 'white',
+    paddingLeft: 10
+  }
 
 })
 

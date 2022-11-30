@@ -1,11 +1,10 @@
 import React from 'react'
-import { View, FlatList, Text, TouchableOpacity, TouchableHighlight} from 'react-native'
+import { View, FlatList, Text, TouchableOpacity, TouchableHighlight } from 'react-native'
 import PropTypes from 'prop-types'
 import ContactThumbnail from '../contactthumbnail'
 import styles from './styles'
 
-export default function ContactsList ({ input, contacts, navigation: { navigate }, setInput,}) {
-
+export default function ContactsList ({ input, contacts, navigation: { navigate }, setInput }) {
   return (
   <FlatList
       style={{ flex: 1, paddingTop: 15 }}
@@ -19,9 +18,7 @@ export default function ContactsList ({ input, contacts, navigation: { navigate 
               thumbnailPhoto={item.thumbnailPhoto}
               />
           </TouchableOpacity>
-      
-          
-          
+
           )
         }
         if (item.name.toLowerCase().includes(input.toLowerCase())) {

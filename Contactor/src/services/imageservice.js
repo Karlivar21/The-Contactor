@@ -12,7 +12,7 @@ const cameraOptions = {
 
 const getPermission = async permissionTypes => {
   if (permissionTypes.indexOf(CAMERA) >= 0) {
-      ImagePicker.useCameraPermissions()
+    ImagePicker.useCameraPermissions()
   }
   if (permissionTypes.indexOf(CAMERA_ROLL) >= 0) {
     await ImagePicker.requestMediaLibraryPermissionsAsync()
@@ -27,13 +27,13 @@ export const selectFromCameraRoll = async () => {
 }
 
 export const takePhoto = async () => {
-  const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+  const permissionResult = await ImagePicker.requestCameraPermissionsAsync()
 
-    if (permissionResult.granted === false) {
-      alert("You've refused to allow this appp to access your camera!");
-      return;
-    }
-  const result = await ImagePicker.launchCameraAsync();
+  if (permissionResult.granted === false) {
+    alert("You've refused to allow this appp to access your camera!")
+    return
+  }
+  const result = await ImagePicker.launchCameraAsync()
 
   if (result.canceled) { return '' }
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, TouchableHighlight, TextInput } from 'react-native'
 import styles from './styles'
 
-export default function Toolbar ({ onAdd, input, setInput, importContact}) {
+export default function Toolbar ({ onAdd, input, setInput, importContact }) {
   return (
     <View style={styles.container}>
         <View style={styles.search}>

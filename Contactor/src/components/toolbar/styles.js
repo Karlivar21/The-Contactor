@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
 
   plus: {
-    paddingLeft: 150,
+    paddingLeft: 90,
     fontSize: 30,
     color: 'white',
     paddingRigth: 40
@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
   button: { 
     fontSize: 20,
     color: 'white',
-    padding: 10
+    paddingLeft: 10,
     },
 
     buttonText: {
         fontSize: 20,
         color: 'white',
-        padding: 10
+        paddingLeft: 10,
     }
 
 })

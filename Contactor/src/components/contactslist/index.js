@@ -3,7 +3,7 @@ import { View, FlatList, Text, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import ContactThumbnail from '../contactthumbnail'
 
-export default function ContactsList ({ input, contacts, navigation: { navigate }, setInput }) {
+export default function ContactsList ({ input, contacts, navigation: { navigate }, setInput,}) {
 
   return (
   <FlatList

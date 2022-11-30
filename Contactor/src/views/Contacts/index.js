@@ -2,20 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import styles from './styles'
 import ContactList from '../../components/contactslist'
-import { addContact, getAllContacts } from '../../services/fileservice'
+import { addContact, getAllContacts, deleteContact } from '../../services/fileservice'
 import Toolbar from '../../components/toolbar'
 import AddModal from '../../components/addmodal'
 import AddPhoto from '../../components/addphoto'
 import * as imageService from '../../services/imageservice'
-import latinize from 'latinize'
+import * as expoContacts from 'expo-contacts';
 
-export default function Contacts ({ navigation }) {
+
+
+export default function ListContacts ({ navigation }) {
   const [getContacts, setGetContacts] = useState([])
   const [openContact, setOpenContact] = useState(false)
   const [photo, setPhoto] = useState({})
   const [openAddPhoto, setOpenAddPhoto] = useState(false)
   const [selectedPhoto, setSelectedPhoto] = useState(false)
   const [input, setInput] = useState('')
+  const [getImportContacts, setImportContact] = useState([])
 
   const fakePhoto = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
     navigation.addListener('focus', () => {
@@ -26,20 +29,26 @@ export default function Contacts ({ navigation }) {
 //     fetchContacts();
 // },[getContacts]);
 
-
+    const removecont = async (contact) => {
+        await deleteContact(contact)
+    }
     const fetchContacts = async () => {
       const data = await getAllContacts();
       const Contacts = [];
-      for (let i = 0; i < data.length; i++) {
-          const info = JSON.parse(data[i].file);
-          const newid = data[i].name.split("-")[1];
-          const id = newid.split(".")[0];
-          const name = info.name;
-          const phoneNumber = info.phoneNumber;
-          const thumbnailPhoto = info.thumbnailPhoto;
+      if (data.length > 0) {
+        for (let i = 0; i < data.length; i++) {
+            const info = JSON.parse(data[i].file);
+            const newid = data[i].name.split("-")[1];
+            const id = newid.split(".")[0];
+            const name = info.name;
+            const phoneNumber = info.phoneNumber;
+            const thumbnailPhoto = info.thumbnailPhoto;
+          removecont({id, name, phoneNumber, thumbnailPhoto})
         Contacts.push({id, name, phoneNumber, thumbnailPhoto})
-      setGetContacts(Contacts)
-      }}
+        setGetContacts(Contacts)
+        }
+    }
+    }
 
   const selectFromCameraRoll = async () => {
     const photo = await imageService.selectFromCameraRoll()
@@ -71,6 +80,8 @@ export default function Contacts ({ navigation }) {
         setSelectedPhoto(false)
     }
 
+    
+
   const switchModal = () => {
     setOpenContact(false)
     setOpenAddPhoto(true)
@@ -87,29 +98,28 @@ export default function Contacts ({ navigation }) {
         setPhoto({})
     }
 
-    // const importContact = async () => {
-    //     const { status } = await importContacts.requestPermissionsAsync();
-    //     if (status === 'granted') {
-    //     const { data } = await importContacts.getContactsAsync({
-    //         fields: [Contacts.Fields.Emails],
-    //     });
+    const importContact = async () => {
+        console.log("importing contacts")
+        const { data } = await expoContacts.getContactsAsync({
+            fields: [expoContacts.Fields.PhoneNumbers],
+        })
+        for (let i = 0; i < data.length; i++) {
+            const contact = data[i];
+            const name = contact.name
+            const Numberlist = contact.phoneNumbers[0]
+            const phoneNumber = Numberlist.digits
+            await handleAddContact({name, phoneNumber})
+    }
+    }  
     
-    //     if (data.length > 0) {
-    //       const contact = data[0];
-    //       console.log(contact);
-          
-    //     }};
-    // }
       
-    
-
   return (
     <View style={styles.container}>
         <Toolbar
         onAdd = {() => setOpenContact(true)}
         input = {input}
         setInput = {setInput}
-        // importContact = {importContact}
+        importContact = {importContact}
         />
         <ContactList
             contacts={getContacts}
